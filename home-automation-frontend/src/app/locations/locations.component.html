@@ -1,0 +1,37 @@
+<h2>Locations</h2>
+
+<form [formGroup]="locationForm" (ngSubmit)="createLocation()">
+  <mat-form-field>
+    <input matInput placeholder="Location Name" formControlName="name" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Add Location</button>
+</form>
+
+<mat-table [dataSource]="locations">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+    <mat-cell *matCellDef="let location">{{ location.id }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+    <mat-cell *matCellDef="let location">
+        <form *ngIf="locationUpdateForms.get(location.id)" [formGroup]="locationUpdateForms.get(location.id)!">
+        <mat-form-field>
+          <input matInput placeholder="Location Name" formControlName="name" />
+        </mat-form-field>
+      </form>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+    <mat-cell *matCellDef="let location">
+      <button mat-button (click)="updateLocation(location.id)">Update</button>
+      <button mat-button (click)="deleteLocation(location.id)">Delete</button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="['id', 'name', 'actions']"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: ['id', 'name', 'actions']"></mat-row>
+</mat-table>

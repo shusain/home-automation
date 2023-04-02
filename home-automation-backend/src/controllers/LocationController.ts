@@ -32,11 +32,11 @@ export class LocationController {
     try {
       await locationRepository.save(location);
     } catch (e) {
-      res.status(409).send("Location creation failed");
+      res.status(409).send({msg: "Location creation failed"});
       return;
     }
 
-    res.status(201).send("Location created");
+    res.status(201).send({msg:"Location created"});
   };
 
   static editLocation = async (req: Request, res: Response) => {

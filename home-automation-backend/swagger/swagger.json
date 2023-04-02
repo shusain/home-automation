@@ -1,0 +1,204 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Location": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"devices": {
+						"items": {
+							"$ref": "#/components/schemas/Device"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"devices"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Device": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"location": {
+						"$ref": "#/components/schemas/Location"
+					},
+					"sensors": {
+						"items": {
+							"$ref": "#/components/schemas/Sensor"
+						},
+						"type": "array"
+					},
+					"actuators": {
+						"items": {
+							"$ref": "#/components/schemas/Actuator"
+						},
+						"type": "array"
+					},
+					"ipCameras": {
+						"items": {
+							"$ref": "#/components/schemas/IPCamera"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"location",
+					"sensors",
+					"actuators",
+					"ipCameras"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Sensor": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string"
+					},
+					"lastValue": {
+						"type": "number",
+						"format": "double"
+					},
+					"device": {
+						"$ref": "#/components/schemas/Device"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"type",
+					"lastValue",
+					"device"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Actuator": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string"
+					},
+					"setValue": {
+						"type": "number",
+						"format": "double"
+					},
+					"device": {
+						"$ref": "#/components/schemas/Device"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"type",
+					"setValue",
+					"device"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IPCamera": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"rtspUrl": {
+						"type": "string"
+					},
+					"device": {
+						"$ref": "#/components/schemas/Device"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"rtspUrl",
+					"device"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "home-automation-backend",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/locations": {
+			"get": {
+				"operationId": "ListAll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Location"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Locations"
+				],
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

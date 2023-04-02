@@ -4,6 +4,8 @@ import { IPCameraController } from "./controllers/IPCameraController";
 import { LocationController } from "./controllers/LocationController";
 import { SensorController } from "./controllers/SensorController";
 
+const locController = new LocationController()
+
 export const AppRoutes = [
   // Location routes
   {

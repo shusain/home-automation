@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { ActuatorsComponent } from './actuators.component';
+
+describe('ActuatorsComponent', () => {
+  let component: ActuatorsComponent;
+  let fixture: ComponentFixture<ActuatorsComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ ActuatorsComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(ActuatorsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

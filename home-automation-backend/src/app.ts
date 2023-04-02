@@ -5,42 +5,49 @@ import { createConnection } from "typeorm";
 import * as bodyParser from "body-parser";
 import { AppRoutes } from "./routes";
 import { Request, Response } from "express";
-// Import other routes
+import swaggerUi from "swagger-ui-express";
+import * as swaggerDocument from "../swagger/swagger.json";
+import cors from 'cors';
 
-const app = express();
-const server = createServer(app);
-const io = new SocketIoServer(server);
 
-// Add middleware, routes, and WebSocket event listeners
+// Creates connection to DB with ts-orm, see ormconfig.json for the connection details
+// also see src/entities for the models of objects stored in the DB
 createConnection()
-  .then(async (connection) => {
-    const app = express();
-    app.use(bodyParser.json());
+    .then(async (connection) => {
+        const app = express();
+        const server = createServer(app);
+        const io = new SocketIoServer(server);
 
-    AppRoutes.forEach((route) => {
-      (app as any)[route.method](
-        route.path,
-        (req: Request, res: Response, next: Function) => {
-          route.action(req, res).catch((err:any) => next(err));
-        }
-      );
-    });
+        // Add middleware, routes, and WebSocket event listeners
+        app.use(bodyParser.json());
+        app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+        app.use(cors({ origin: 'http://localhost:4200' }));
+        
+        // Add routes
+        AppRoutes.forEach((route: any) => {
+            (app as any)[route.method](
+                route.path,
+                (req: Request, res: Response, next: Function) => {
+                    route.action(req, res).catch((err: any) => next(err));
+                }
+            );
+        });
 
-    app.listen(3000, () => {
-      console.log("Server started on port 3000!");
-    });
-  })
-  .catch((error) => console.log("TypeORM connection error: ", error));
-// Add other routes
+        app.listen(3000, () => {
+            console.log("Server started on port 3000!");
+        });
 
 
-// Create web socket connection
-io.on("connection", (socket) => {
-    console.log("A user connected");
-  
-    // Handle WebSocket events, such as subscribing to updates or sending real-time data
-  
-    socket.on("disconnect", () => {
-      console.log("A user disconnected");
-    });
-  });
+        // Create web socket connection
+        io.on("connection", (socket) => {
+            console.log("A user connected");
+
+            // Handle WebSocket events, such as subscribing to updates or sending real-time data
+
+            socket.on("disconnect", () => {
+                console.log("A user disconnected");
+            });
+        });
+    })
+    .catch((error) => console.log("TypeORM connection error: ", error));
+
