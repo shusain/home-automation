@@ -55,6 +55,7 @@ docker-compose up -d
 1. Install the dependencies for the backend, frontend, and shared-models:
 
 ```bash
+cd shared-models
 npm install
 
 cd ../home-automation-frontend
