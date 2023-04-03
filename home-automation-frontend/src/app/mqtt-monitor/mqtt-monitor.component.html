@@ -1,0 +1,24 @@
+<div class="mqtt-monitor">
+    <div class="mqtt-messages">
+      <h2>Received MQTT Messages</h2>
+      <div *ngFor="let message of receivedMessages">
+        <strong>{{ message.topic }}</strong>: {{ message.message }}
+      </div>
+    </div>
+  
+    <div class="mqtt-publish">
+      <h2>Publish MQTT Message</h2>
+      <form [formGroup]="mqttForm" (submit)="publishMqttMessage()">
+        <div>
+          <label>Topic:</label>
+          <input formControlName="publishTopic" type="text" />
+        </div>
+        <div>
+          <label>Message:</label>
+          <input formControlName="publishMessage" type="text" />
+        </div>
+        <button type="submit">Publish</button>
+      </form>
+    </div>
+  </div>
+  

@@ -1,1 +1,12 @@
-<p>ip-cameras works!</p>
+<div class="ip-cameras-list">
+    <h2>IP Cameras</h2>
+    <div *ngFor="let ipCamera of ipCameras">
+      <div class="ip-camera-card">
+        <h3>{{ ipCamera.name }}</h3>
+        <img [src]="ipCamera.rtspUrl">
+        <br/>
+        <button (click)="editIPCamera(ipCamera)">Edit</button>
+      </div>
+    </div>
+  </div>
+  

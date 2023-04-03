@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LocationService, Location } from './services/location.service';
+import { LocationDTO } from 'shared-models/dtos/LocationDTO';
+import { LocationService } from './services/location.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { LocationService, Location } from './services/location.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  locations: Location[] = [];
+  locations: LocationDTO[] = [];
 
   constructor(private locationsService: LocationService) {}
 

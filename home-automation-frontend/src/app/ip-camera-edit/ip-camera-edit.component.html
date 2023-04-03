@@ -1,0 +1,19 @@
+<div class="ip-camera-edit">
+    <h2>Edit IP Camera</h2>
+    <form [formGroup]="ipCameraForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" formControlName="name">
+        </div>
+        <div>
+            <label for="rtspUrl">RTSP URL</label>
+            <input id="rtspUrl" type="text" formControlName="rtspUrl">
+        </div>
+        <div>
+            <label for="deviceId">Device ID</label>
+            <input id="deviceId" type="number" formControlName="deviceId">
+        </div>
+        <button type="submit">Save</button>
+    </form>
+    <app-ipcamera-viewer *ngIf="ipCamera" [ipCamera]="ipCamera"></app-ipcamera-viewer>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Location, LocationService } from '../services/location.service';
+import { LocationDTO } from 'shared-models/dtos/LocationDTO';
+import { LocationService } from '../services/location.service';
 
 @Component({
   selector: 'app-locations',
@@ -8,7 +9,7 @@ import { Location, LocationService } from '../services/location.service';
   styleUrls: ['./locations.component.scss'],
 })
 export class LocationsComponent implements OnInit {
-  locations: Location[] = [];
+  locations: LocationDTO[] = [];
   locationForm: FormGroup;
   locationUpdateForms: Map<number, FormGroup> = new Map();
 

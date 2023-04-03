@@ -3,15 +3,20 @@
     <button mat-button routerLink="/">Home</button>
 
     <span class="section-title">Manage:</span>
-    <button mat-button routerLink="/locations">Locations</button>
-    <button mat-button routerLink="/devices">Devices</button>
-    <button mat-button routerLink="/sensors">Sensors</button>
-    <button mat-button routerLink="/actuators">Actuators</button>
-    <button mat-button routerLink="/ip-cameras">IP Cameras</button>
+    <div class="button-list">
+      <button mat-button routerLink="/locations">Locations</button>
+      <button mat-button routerLink="/devices">Devices</button>
+      <button mat-button routerLink="/sensors">Sensors</button>
+      <button mat-button routerLink="/actuators">Actuators</button>
+      <button mat-button routerLink="/ip-cameras">IP Cameras</button>
+      <button mat-button routerLink="/mqtt-monitor">MQTT Monitor</button> 
+    </div>
 
     <span class="section-title">Locations:</span>
     <ng-container *ngFor="let location of locations">
-      <button mat-button [routerLink]="['/locations', location.id]">{{ location.name }}</button>
+      <div class="button-list">
+        <button mat-button [routerLink]="['/locations', location.id]">{{ location.name }}</button>
+      </div>
     </ng-container>
   </mat-sidenav>
 

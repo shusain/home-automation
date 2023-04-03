@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>{{ location?.name }}</h2>
+
+  <h3>Add Device</h3>
+  <form [formGroup]="newDeviceForm" (ngSubmit)="onSubmit()" style="margin-bottom:2rem">
+    <mat-form-field appearance="fill">
+      <mat-label>Device Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <br/>
+    <button mat-raised-button color="primary" type="submit" [disabled]="newDeviceForm.invalid">
+      Add Device
+    </button>
+    <br/>
+    <br/>
+  </form>
+
+  <h3>Devices</h3>
+  <mat-card *ngFor="let device of location?.devices">
+    <mat-card-header>
+      <mat-card-title>{{ device.name }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button [routerLink]="['/devices', device.id]">Edit</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

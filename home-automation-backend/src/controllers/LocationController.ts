@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { Location } from "../entity/Location";
+import { LocationDTO } from "shared-models/dtos/LocationDTO"
 
 export class LocationController {
-  static listAll = async (req: Request, res: Response) => {
+
+  static listAll = async (req: Request, res: Response):Promise<Array<LocationDTO>> => {
     const locationRepository = getRepository(Location);
-    const locations = await locationRepository.find({ relations: ["devices"] });
+    const locations = await locationRepository.find({ relations: ["devices"], order: {id: "ASC"} });
     res.send(locations);
+    return (locations as unknown) as Array<LocationDTO>
   };
 
   static getOneById = async (req: Request, res: Response) => {

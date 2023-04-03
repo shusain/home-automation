@@ -1,0 +1,35 @@
+<div *ngIf="device">
+    <h1>{{ device.name }}</h1>
+  
+    <!-- Sensors -->
+    <h2>Sensors</h2>
+    <!-- Add sensor handling here -->
+
+
+    <!-- IP Cameras -->
+    <h2>IP Cameras</h2>
+    <div *ngFor="let ipCamera of device.ipCameras">
+      <app-ipcamera-viewer [ipCamera]="ipCamera"/>
+      <br/>
+      <button [routerLink]="['/ip-cameras', ipCamera.id, 'edit']">Edit</button>
+      <button (click)="removeIPCamera(ipCamera.id)">Remove</button>
+    </div>
+  
+    <h3>Add IP Camera</h3>
+    <form [formGroup]="ipCameraForm" (ngSubmit)="addIPCamera(ipCameraForm.value)">
+      <div>
+        <label>Name:</label>
+        <input type="text" formControlName="name">
+      </div>
+      <div>
+        <label>URL:</label>
+        <input type="text" formControlName="rtspUrl">
+      </div>
+      <button type="submit" [disabled]="ipCameraForm.invalid">Add IP Camera</button>
+    </form>
+  
+    <!-- Actuators -->
+    <h2>Actuators</h2>
+    <!-- Add actuator handling here -->
+  </div>
+  

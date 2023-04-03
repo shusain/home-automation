@@ -141,6 +141,16 @@ export const AppRoutes = [
     method: "delete",
     action: IPCameraController.deleteIPCamera,
   },
+  {
+    path: "/ipcameras/:id/start-stream",
+    method: "post",
+    action: IPCameraController.startStream,
+  },
+  {
+    path: "/ipcameras/:id/stop-stream",
+    method: "post",
+    action: IPCameraController.stopStream,
+  },
   // Other routes (Location routes, Device routes, Sensor routes, Actuator routes)...
 
 ];

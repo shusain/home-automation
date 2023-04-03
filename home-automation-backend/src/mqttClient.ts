@@ -16,4 +16,5 @@ client.on("message", (topic, message) => {
   // Handle MQTT messages and update devices, sensors, actuators, or emit WebSocket events
 });
 
+
 export default client;

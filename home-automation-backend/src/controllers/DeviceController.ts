@@ -6,7 +6,9 @@ import { Location } from "../entity/Location";
 export class DeviceController {
   static listAll = async (req: Request, res: Response) => {
     const deviceRepository = getRepository(Device);
-    const devices = await deviceRepository.find({ relations: ["location"] });
+    const devices = await deviceRepository.find({
+      relations: ["location", "actuators", "sensors", "ipCameras"],
+    });
     res.send(devices);
   };
 
@@ -16,7 +18,7 @@ export class DeviceController {
     try {
       const device = await deviceRepository.findOneOrFail({
         where: {id},
-        relations: ["location", "sensors"]
+        relations: ["location", "actuators", "sensors", "ipCameras"]
       });
       res.send(device);
     } catch (error) {
@@ -46,7 +48,7 @@ export class DeviceController {
       return;
     }
 
-    res.status(201).send("Device created");
+    res.status(201).send({msg: "Device created"});
   };
 
   static editDevice = async (req: Request, res: Response) => {

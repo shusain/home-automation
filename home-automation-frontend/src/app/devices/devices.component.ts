@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LocationService, Location } from '../services/location.service';
+import { LocationService } from '../services/location.service';
 import { DeviceService } from '../services/device.service';
+import { LocationDTO } from 'shared-models/dtos/LocationDTO';
 
 @Component({
   selector: 'app-devices',
@@ -10,7 +11,7 @@ import { DeviceService } from '../services/device.service';
 })
 export class DevicesComponent implements OnInit {
   addDeviceForm: FormGroup;
-  locations: Location[] = [];
+  locations: LocationDTO[] = [];
 
   constructor(
     private formBuilder: FormBuilder,

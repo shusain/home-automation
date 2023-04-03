@@ -2,11 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
-export interface Location {
-  id: number;
-  name: string;
-}
+import { LocationDTO } from 'shared-models/dtos/LocationDTO'
 
 @Injectable({
   providedIn: 'root',
@@ -16,19 +12,19 @@ export class LocationService {
 
   constructor(private http: HttpClient) {}
 
-  getLocations(): Observable<Location[]> {
-    return this.http.get<Location[]>(this.apiUrl);
+  getLocations(): Observable<LocationDTO[]> {
+    return this.http.get<LocationDTO[]>(this.apiUrl);
   }
 
-  getLocation(id: number): Observable<Location> {
-    return this.http.get<Location>(`${this.apiUrl}/${id}`);
+  getLocation(id: number): Observable<LocationDTO> {
+    return this.http.get<LocationDTO>(`${this.apiUrl}/${id}`);
   }
 
-  createLocation(location: Location): Observable<Location> {
-    return this.http.post<Location>(this.apiUrl, location);
+  createLocation(location: LocationDTO): Observable<LocationDTO> {
+    return this.http.post<LocationDTO>(this.apiUrl, location);
   }
 
-  updateLocation(id: number, location: Location): Observable<void> {
+  updateLocation(id: number, location: LocationDTO): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/${id}`, location);
   }
 
