@@ -1,0 +1,7 @@
+<h2>Captured Images</h2>
+<p>Total Size: {{ totalSize }} bytes</p>
+<ul>
+  <li *ngFor="let image of images">
+    <a [href]="fetchImageLink(image.name)" target="_blank">{{ image.name }}</a>
+  </li>
+</ul>

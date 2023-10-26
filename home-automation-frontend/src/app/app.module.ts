@@ -22,7 +22,8 @@ import { MatCardModule } from '@angular/material/card';
 import { DeviceDetailComponent } from './device-detail/device-detail.component';
 import { IPCameraViewerComponent } from './ipcamera-viewer/ipcamera-viewer.component';
 import { IPCameraEditComponent } from './ip-camera-edit/ip-camera-edit.component';
-import { MqttMonitorComponent } from './mqtt-monitor/mqtt-monitor.component'
+import { MqttMonitorComponent } from './mqtt-monitor/mqtt-monitor.component';
+import { CapturedImagesComponent } from './captured-images/captured-images.component'
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MqttMonitorComponent } from './mqtt-monitor/mqtt-monitor.component'
     DeviceDetailComponent,
     IPCameraViewerComponent,
     IPCameraEditComponent,
-    MqttMonitorComponent
+    MqttMonitorComponent,
+    CapturedImagesComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { LocationDetailComponent } from './location-detail/location-detail.compo
 import { DeviceDetailComponent } from './device-detail/device-detail.component';
 import { IPCameraEditComponent } from './ip-camera-edit/ip-camera-edit.component';
 import { MqttMonitorComponent } from './mqtt-monitor/mqtt-monitor.component';
+import { CapturedImagesComponent } from './captured-images/captured-images.component';
 
 const routes: Routes = [
   { path: 'locations', component: LocationsComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'sensors', component: SensorsComponent },
   { path: 'actuators', component: ActuatorsComponent },
   { path: 'ip-cameras', component: IPCamerasComponent },
+  { path: 'captured-images', component: CapturedImagesComponent },
   { path: 'ip-cameras/:id/edit', component: IPCameraEditComponent },
   { path: 'locations/:id', component: LocationDetailComponent },
   { path: 'devices/:id', component: DeviceDetailComponent },
