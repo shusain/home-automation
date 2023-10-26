@@ -4,7 +4,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: Dockerfile.frontend
+      target: frontend-build
     container_name: home-automation-frontend
     volumes:
       - certbot-etc:/etc/letsencrypt
@@ -15,7 +15,7 @@ services:
   backend:
     build:
       context: .
-      # dockerfile: Dockerfile.backend  # If you create a backend Dockerfile
+      target: backend-build  # If you have a backend build stage
     container_name: home-automation-backend
     volumes:
       - certbot-etc:/etc/letsencrypt

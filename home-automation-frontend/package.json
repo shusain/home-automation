@@ -24,7 +24,7 @@
     "@types/node": "^18.15.11",
     "chart.js": "^4.2.1",
     "rxjs": "~7.8.0",
-    "shared-models": "file:../shared-models/src",
+    "shared-models": "file:../shared-models/dist",
     "socket.io-client": "^4.6.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
