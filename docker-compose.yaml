@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: home-automation-frontend
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+  
+  backend:
+    build:
+      context: .
+      # dockerfile: Dockerfile.backend  # If you create a backend Dockerfile
+    container_name: home-automation-backend
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+    ports:
+      - "3000:3000"
+  
+  db:
+    image: postgres:13
+    container_name: postgres-db
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydatabase
+  
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+    command: certonly --webroot --webroot-path=/var/www/html -d your-domain.com --email your-email@example.com --agree-tos --no-eff-email
+
+volumes:
+  db-data:
+  certbot-etc:
+  certbot-var:
