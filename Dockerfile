@@ -19,3 +19,16 @@ WORKDIR /usr/src/app/backend
 COPY ./home-automation-backend/package*.json ./
 RUN npm install
 COPY ./home-automation-backend ./
+
+# Frontend serve stage
+FROM nginx:alpine AS frontend-serve
+COPY --from=frontend-build /usr/src/app/frontend/dist/home-automation-frontend /usr/share/nginx/html
+EXPOSE 80 443
+
+# Backend run stage
+FROM node:18 AS backend-serve
+WORKDIR /usr/src/app/backend
+COPY --from=backend-build /usr/src/app/shared-models /usr/src/app/shared-models
+COPY --from=backend-build /usr/src/app/backend /usr/src/app/backend
+CMD ["npm", "start"]
+EXPOSE 3000

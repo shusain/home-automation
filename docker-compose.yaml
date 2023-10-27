@@ -4,7 +4,7 @@ services:
   frontend:
     build:
       context: .
-      target: frontend-build
+      target: frontend-serve
     container_name: home-automation-frontend
     volumes:
       - certbot-etc:/etc/letsencrypt
@@ -15,7 +15,7 @@ services:
   backend:
     build:
       context: .
-      target: backend-build  # If you have a backend build stage
+      target: backend-serve
     container_name: home-automation-backend
     volumes:
       - certbot-etc:/etc/letsencrypt
@@ -28,9 +28,11 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=mypassword
-      - POSTGRES_DB=mydatabase
+      - POSTGRES_USER=shaun
+      - POSTGRES_PASSWORD=homeAut0mation
+      - POSTGRES_DB=homeAutomationDB
+    ports:
+      - 54320:5432
   
   certbot:
     image: certbot/certbot

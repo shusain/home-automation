@@ -23,7 +23,7 @@
     "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
     "rxjs-websockets": "^9.0.0",
-    "shared-models": "file:../shared-models/src",
+    "shared-models": "file:../shared-models/dist",
     "socket.io": "^4.6.1",
     "swagger-ui-express": "^4.6.2",
     "tslib": "^2.5.0",
