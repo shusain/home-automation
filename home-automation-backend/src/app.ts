@@ -21,9 +21,7 @@ createConnection()
         // Add middleware, routes, and WebSocket event listeners
         app.use(bodyParser.json());
         app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-        app.use(cors({ origin: 'http://localhost' }));
-        app.use(cors({ origin: 'http://workhorse.shauncore.com:8080' }));
-        app.use(cors({ origin: 'http://ubuntu-workhorse.local:8080/' }));
+        app.use(cors({ origin: ['http://localhost', 'http://workhorse.shauncore.com:8080', 'http://ubuntu-workhorse.local:8080/'] }));
         
         // Add routes
         AppRoutes.forEach((route: any) => {
