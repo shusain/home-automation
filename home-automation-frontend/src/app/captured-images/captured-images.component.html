@@ -4,7 +4,7 @@
 </select>
 
 <!-- Image display -->
-<img [src]="'http://localhost:3001' + imageControl.value" alt="Selected Image">
+<img [src]="captureServerURL + imageControl.value" alt="Selected Image">
 
 <!-- Navigation arrows -->
 <button (click)="prevImage()">Previous</button>

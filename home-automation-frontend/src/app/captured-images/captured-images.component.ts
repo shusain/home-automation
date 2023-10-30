@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CapturedImagesService } from '../captured-images.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-captured-images',
@@ -10,6 +11,7 @@ import { CapturedImagesService } from '../captured-images.service';
 export class CapturedImagesComponent implements OnInit {
   images:Array<{link:string, name: string}> = [];  // Assume this array is populated with your image URLs
   imageControl = new FormControl();
+  captureServerURL = `http://${environment.serverDomain}:3001`
 
   public constructor(private capturedImagesService: CapturedImagesService) {
 
