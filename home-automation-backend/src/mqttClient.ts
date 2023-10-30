@@ -1,6 +1,6 @@
 import mqtt from "mqtt";
 
-const MQTT_SERVER_URL = "mqtt://192.168.1.10";
+const MQTT_SERVER_URL = "mqtt://192.168.0.11";
 const client = mqtt.connect(MQTT_SERVER_URL);
 
 client.on("connect", () => {

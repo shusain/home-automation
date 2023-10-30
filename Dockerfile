@@ -23,6 +23,7 @@ COPY ./home-automation-backend ./
 # Frontend serve stage
 FROM nginx:alpine AS frontend-serve
 COPY --from=frontend-build /usr/src/app/frontend/dist/home-automation-frontend /usr/share/nginx/html
+COPY home-automation-frontend/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80 443
 
 # Backend run stage

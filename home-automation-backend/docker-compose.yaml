@@ -6,8 +6,8 @@ services:
   db:
     image: postgres
     restart: always
-    environment:
-      POSTGRES_PASSWORD: homeAut0mation
+    env_file:
+      - ../.env
     ports:
       - 54320:5432
       

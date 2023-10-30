@@ -1,7 +1,11 @@
-<h2>Captured Images</h2>
-<p>Total Size: {{ totalSize }} bytes</p>
-<ul>
-  <li *ngFor="let image of images">
-    <a [href]="fetchImageLink(image.name)" target="_blank">{{ image.name }}</a>
-  </li>
-</ul>
+<!-- Dropdown for selecting images -->
+<select [formControl]="imageControl">
+    <option *ngFor="let image of images" [value]="image.link">{{ image.name }}</option>
+</select>
+
+<!-- Image display -->
+<img [src]="'http://localhost:3001' + imageControl.value" alt="Selected Image">
+
+<!-- Navigation arrows -->
+<button (click)="prevImage()">Previous</button>
+<button (click)="nextImage()">Next</button>

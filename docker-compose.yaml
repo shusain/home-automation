@@ -21,16 +21,16 @@ services:
       - certbot-etc:/etc/letsencrypt
     ports:
       - "3000:3000"
+    depends_on:
+      - db
   
   db:
     image: postgres:13
     container_name: postgres-db
     volumes:
       - db-data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=shaun
-      - POSTGRES_PASSWORD=homeAut0mation
-      - POSTGRES_DB=homeAutomationDB
+    env_file:
+      - .env
     ports:
       - 54320:5432
   

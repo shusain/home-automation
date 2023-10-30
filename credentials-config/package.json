@@ -1,0 +1,16 @@
+{
+  "name": "credentials-config",
+  "version": "1.0.0",
+  "description": "",
+  "main": "get-orm-credentials.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node get-orm-credentials.js"
+  },
+  "author": "Shaun Husain",
+  "license": "ISC",
+  "dependencies": {
+    "path": "^0.12.7",
+    "prompt-sync": "^4.2.0"
+  }
+}
