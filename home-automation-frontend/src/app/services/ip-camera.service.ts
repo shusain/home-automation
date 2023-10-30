@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IPCameraDTO } from 'shared-models/dtos/IPCameraDTO';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class IpCameraService {
-  private readonly API_URL = 'http://localhost:3000/ipcameras';
+  private readonly API_URL = `${environment.serverBaseUrl}/ipcameras`;
 
   constructor(private httpClient: HttpClient) {}
 
